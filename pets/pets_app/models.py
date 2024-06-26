@@ -24,7 +24,9 @@ class Pets(models.Model):
     def __str__(self):
         return f'{self.type}'
 
-
+    class Meta:
+        verbose_name = 'Pets'
+        verbose_name_plural = 'Pets'
 
 class Feedback(models.Model):
     name = models.CharField(max_length=10)
