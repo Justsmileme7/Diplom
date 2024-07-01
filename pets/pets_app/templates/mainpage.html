@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block site %}
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: none;
+            padding: 10px;
+        }
+
+        .search-bar {
+            width: 300px;
+        }
+
+        .news-item {
+            display: flex;
+            border: none;
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        .news-image {
+            width: 150px;
+            height: 240px;
+            margin-right: 40px;
+            margin-left: 20px;
+        }
+
+        .pets-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .news-description {
+            font-size: 18px;
+        }
+    </style>
+
+<form action="" method="get"> {# форма для передачи из нтмл файла во вью  #}
+
+
+
+{% for pet in pets_list %}
+    <div class="news-item">
+    <img class="news-image" src="/media/{{ pet.image }}">
+         <div>
+    <h2 class = "pets-title"> {{ pet.type }}</h2>
+    <p class = "news-description"> {{ pet.breed }}</p>
+    <p class = "news-description"> {{ pet.name }}</p>
+
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+
+{% endblock %}
