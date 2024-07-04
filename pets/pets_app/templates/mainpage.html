@@ -24,7 +24,7 @@
             padding: 10px;
         }
 
-        .news-image {
+        .pets-image {
             width: 150px;
             height: 240px;
             margin-right: 40px;
@@ -47,7 +47,7 @@
 
 {% for pet in pets_list %}
     <div class="news-item">
-    <img class="news-image" src="/media/{{ pet.image }}">
+    <img class="pets-image" src="/media/{{ pet.image }}">
          <div>
     <h2 class = "pets-title"> {{ pet.type }}</h2>
     <p class = "news-description"> {{ pet.breed }}</p>

@@ -2,6 +2,7 @@ from django.contrib import admin
 from pets_app.models import Pets, Feedback
 from django.utils.safestring import mark_safe
 
+
 # Register your models here.
 
 @admin.register(Pets)
@@ -10,9 +11,7 @@ class PetsAdmin(admin.ModelAdmin):
     search_fields = ('name', 'type', 'breed', 'place')
     ordering = ('name', 'type', 'breed', 'place')
 
-
     def preview(self, instance: Pets):
         if instance.image:
-            return mark_safe(f'<img style="max-width: 200px" src="{instance.image.url}" alt="">')
+            return mark_safe(f'<img style="max-width: 100px" src="{instance.image.url}" alt="">')
         return mark_safe('Without picture')
-
