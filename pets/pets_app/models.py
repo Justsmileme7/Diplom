@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class Pets(models.Model):
@@ -13,13 +14,12 @@ class Pets(models.Model):
     )
     image = models.ImageField(null=True, blank=True, default=None, upload_to='photos/')
     name = models.CharField(max_length=50, unique=True)
-    type = models.CharField(choices=PETS_CHOICE, default='others', max_length=100 )
+    type = models.CharField(choices=PETS_CHOICE, default='others', max_length=100)
     breed = models.CharField(max_length=50, unique=False)
     description = models.TextField()
     age = models.IntegerField(default=0)
     place = models.CharField(max_length=50, unique=False)
     date_of_add = models.DateTimeField(auto_now_add=True)
-
 
     def __str__(self):
         return f'{self.type}'
@@ -27,6 +27,7 @@ class Pets(models.Model):
     class Meta:
         verbose_name = 'Pets'
         verbose_name_plural = 'Pets'
+
 
 class Feedback(models.Model):
     name = models.CharField(max_length=10)
