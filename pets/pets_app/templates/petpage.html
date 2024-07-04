@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block site %}
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: none;
+            padding: 10px;
+        }
+
+        .search-bar {
+            width: 300px;
+        }
+
+        .news-item {
+            display: flex;
+            border: none;
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        .pets-image {
+            width: 150px;
+            height: 240px;
+            margin-right: 40px;
+            margin-left: 20px;
+        }
+
+        .pets-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .news-description {
+            font-size: 18px;
+        }
+    </style>
+
+<form action="" method="get"> {# форма для передачи из нтмл файла во вью  #}
+
+
+    <div class="news-item">
+    <img class="pets-image" src="/media/{{ pet.image }}">
+         <div>
+    <h2 class = "pets-title"> {{ pet.type }}</h2>
+    <p class = "pets-name"> {{ pet.name }}</p>
+    <p class = "pets-breed"> {{ pet.breed }}</p>
+    <p class = "pets-age"> {{ pet.age }}</p>
+    <p class = "pets-description"> {{ pet.description }}</p>
+    <p class = "pets-place"> {{ pet.place }}</p>
+    <p class = "pets-date_of_add"> {{ pet.date_of_add }}</p>
+
+        </div>
+    </div>
+    <hr>
+
+
+{% endblock %}

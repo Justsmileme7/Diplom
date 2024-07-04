@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from .models import Pets, Feedback
+from .forms import FeedbackForm
 
 
 # Create your views here.
@@ -22,10 +23,30 @@ class MainPageView(View):
 class PetsPageView(View):
 
     def get(self, request, id, *args, **kwargs):
-        news = News.objects.get(id=id)  # достаем одну новость по ИД из базы данных из таблицы news
-        title = news.title
-        return render(request, 'newspage.html',
-                      context={"title": title,
-                               'news': news,
+        pets = Pets.objects.get(id=id)  # достаем одну новость по ИД из базы данных из таблицы news
+        pet_type = pets.type
+        return render(request, 'petpage.html',
+                      context={"title": pet_type,
+                               'pet': pets,
                                })
+
+
 # Create your views here.
+class FeedbackPageView(View):
+
+    def get(self, request, *args, **kwargs):
+        form = FeedbackForm()
+        return render(request, 'feedback.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            feedback = form.save(commit=False)
+
+            feedback.save()
+            form.save_m2m()
+            return redirect('mainpage')
+
+
+        return render(request, 'feedback.html', {'form': form})

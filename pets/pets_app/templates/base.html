@@ -17,8 +17,12 @@
 {#<p>{{ username }}</p>#}
 <br><br>
 <h1>{{ title }}</h1>
+
+
 {% block site %}
 {% endblock %}
+
+<button class="button" onclick="window.location.href='{% url 'feedback' %}'">Feedback</button>
 <hr><br>
 </body>
 </html>

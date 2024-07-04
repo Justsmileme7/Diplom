@@ -36,12 +36,31 @@
             font-size: 18px;
         }
 
-        .news-description {
+        .pets-description {
             font-size: 18px;
         }
     </style>
 
 <form action="" method="get"> {# форма для передачи из нтмл файла во вью  #}
+
+<select id="sort" name="sort">
+    <option value="date_of_add" {% if request.GET.sort == 'date_of_add' %}selected{% endif %}>Date of add</option>
+    <option value="type" {% if request.GET.sort == 'type' %}selected{% endif %}> Type </option>
+    <option value="breed" {% if request.GET.sort == 'breed' %}selected{% endif %}> Breed </option>
+
+</select>
+<button> Submit </button>
+</form>
+    <br>
+    <form action="" method="get">
+<select id="order" name="order">
+
+    <option value="back_order" {% if request.GET.order == 'back_order' %}selected{% endif %}>Back order</option>
+    <option value="wright_order" {% if request.GET.order == 'wright_order' %}selected{% endif %}>Wright order</option>
+</select>
+<button> Submit </button>
+</form>
+<br>
 
 
 
@@ -50,8 +69,17 @@
     <img class="pets-image" src="/media/{{ pet.image }}">
          <div>
     <h2 class = "pets-title"> {{ pet.type }}</h2>
-    <p class = "news-description"> {{ pet.breed }}</p>
-    <p class = "news-description"> {{ pet.name }}</p>
+    <p class = "pets-description"> {{ pet.breed }}</p>
+    <p class = "pet-description"> {{ pet.name }}</p>
+
+
+
+        </div>
+
+
+    <h2 class = "pets-title"> {{ pets.title }}</h2>
+    <p class = "news-description"> {{ new.description }}</p>
+    <a href="{% url "petpage" pet.id %}">Read about pets</a>
 
         </div>
     </div>
