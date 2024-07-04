@@ -15,3 +15,8 @@ class PetsAdmin(admin.ModelAdmin):
         if instance.image:
             return mark_safe(f'<img style="max-width: 100px" src="{instance.image.url}" alt="">')
         return mark_safe('Without picture')
+
+
+@admin.register(Feedback)
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ('name', 'subject', 'context_of_comment', 'phone')
