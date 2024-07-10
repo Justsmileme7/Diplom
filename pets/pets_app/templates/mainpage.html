@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block site %}
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: none;
+            padding: 10px;
+        }
+
+        .search-bar {
+            width: 300px;
+        }
+
+        .news-item {
+            display: flex;
+            border: none;
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        .pets-image {
+            width: 150px;
+            height: 240px;
+            margin-right: 40px;
+            margin-left: 20px;
+        }
+
+        .pets-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .pets-description {
+            font-size: 18px;
+        }
+    </style>
+
+<form action="" method="get"> {# форма для передачи из нтмл файла во вью  #}
+
+<select id="sort" name="sort">
+    <option value="date_of_add" {% if request.GET.sort == 'date_of_add' %}selected{% endif %}>Date of add</option>
+    <option value="type" {% if request.GET.sort == 'type' %}selected{% endif %}> Type </option>
+    <option value="breed" {% if request.GET.sort == 'breed' %}selected{% endif %}> Breed </option>
+
+</select>
+<button> Submit </button>
+</form>
+    <br>
+    <form action="" method="get">
+<select id="order" name="order">
+
+    <option value="back_order" {% if request.GET.order == 'back_order' %}selected{% endif %}>Back order</option>
+    <option value="wright_order" {% if request.GET.order == 'wright_order' %}selected{% endif %}>Wright order</option>
+</select>
+<button> Submit </button>
+</form>
+<br>
+
+
+
+{% for pet in pets_list %}
+    <div class="news-item">
+    <img class="pets-image" src="/media/{{ pet.image }}">
+         <div>
+    <h2 class = "pets-title"> {{ pet.type }}</h2>
+    <p class = "pets-description"> {{ pet.breed }}</p>
+    <p class = "pet-description"> {{ pet.name }}</p>
+
+
+
+        </div>
+
+
+    <h2 class = "pets-title"> {{ pets.title }}</h2>
+    <p class = "news-description"> {{ new.description }}</p>
+    <a href="{% url "petpage" pet.id %}">Read about pets</a>
+
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+
+{% endblock %}
