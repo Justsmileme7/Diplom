@@ -3,8 +3,6 @@ from pets_app.models import Pets, Feedback
 from django.utils.safestring import mark_safe
 
 
-# Register your models here.
-
 @admin.register(Pets)
 class PetsAdmin(admin.ModelAdmin):
     list_display = ('name', 'type', 'breed', 'image', 'description', 'age', 'place', 'date_of_add')
