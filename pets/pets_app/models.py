@@ -1,8 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-
 class Pets(models.Model):
     PETS_CHOICE = (
         ('cat', 'cat'),
