@@ -8,7 +8,11 @@ class MainPageView(View):
     PAGE_TITLE = 'Pets'
 
     def get(self, request, *args, **kwargs):
-        pets = Pets.objects.all()
+        order = request.GET.get('order', 'back_order')
+        sort = request.GET.get('sort', 'date_of_add')
+        if order == 'back_order':
+            sort = f'-{sort}'
+        pets = Pets.objects.all().order_by(sort)
 
         return render(request, 'mainpage.html',
                       context={"title": self.PAGE_TITLE,
