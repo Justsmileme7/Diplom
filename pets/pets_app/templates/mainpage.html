@@ -25,8 +25,8 @@
         }
 
         .pets-image {
-            width: 150px;
-            height: 240px;
+            width: 100px;
+            height: 150px;
             margin-right: 40px;
             margin-left: 20px;
         }
@@ -47,19 +47,36 @@
     <option value="date_of_add" {% if request.GET.sort == 'date_of_add' %}selected{% endif %}>Date of add</option>
     <option value="type" {% if request.GET.sort == 'type' %}selected{% endif %}> Type </option>
     <option value="breed" {% if request.GET.sort == 'breed' %}selected{% endif %}> Breed </option>
-
 </select>
-<button> Submit </button>
-</form>
-    <br>
-    <form action="" method="get">
-<select id="order" name="order">
+
+    <select id="order" name="order">
 
     <option value="back_order" {% if request.GET.order == 'back_order' %}selected{% endif %}>Back order</option>
     <option value="wright_order" {% if request.GET.order == 'wright_order' %}selected{% endif %}>Wright order</option>
+
 </select>
 <button> Submit </button>
+
+
 </form>
+    <br>
+
+
+<form action="" method="get"> {# форма для передачи из нтмл файла во вью  #}
+  <label for="type">type:</label>
+    <select id="type" name="type">
+        <option value="" {% if request.GET.order == '' %}selected{% endif %}>All</option>
+        <option value="cat" {% if request.GET.type == 'cat' %}selected{% endif %}>cat</option>
+        <option value="dog" {% if request.GET.type == 'dog' %}selected{% endif %}>dog</option>
+        <option value="bird" {% if request.GET.type == 'bird' %}selected{% endif %}>bird</option>
+        <option value="rat" {% if request.GET.type == 'rat' %}selected{% endif %}>rat</option>
+        <option value="snake" {% if request.GET.type == 'snake' %}selected{% endif %}>snake</option>
+        <option value="other" {% if request.GET.type == 'other' %}selected{% endif %}>other</option>
+    </select>
+
+<button> Submit </button>
+</form>
+    <br>
 <br>
 
 

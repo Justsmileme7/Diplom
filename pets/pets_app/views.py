@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import Pets, Feedback
+from .models import Pets, Feedback, Photo
 from .forms import FeedbackForm
 
 
@@ -8,7 +8,16 @@ class MainPageView(View):
     PAGE_TITLE = 'Pets'
 
     def get(self, request, *args, **kwargs):
-        pets = Pets.objects.all()
+        order = request.GET.get('order', 'back_order')
+        sort = request.GET.get('sort', 'date_of_add')
+        if order == 'back_order':
+            sort = f'-{sort}'
+
+        filter_type = request.GET.get('type', '')
+        if filter_type == '':
+            pets = Pets.objects.all().order_by(sort)
+        else:
+            pets = Pets.objects.all().order_by(sort).filter(type=filter_type)
 
         return render(request, 'mainpage.html',
                       context={"title": self.PAGE_TITLE,
@@ -21,9 +30,12 @@ class PetsPageView(View):
     def get(self, request, id, *args, **kwargs):
         pets = Pets.objects.get(id=id)
         pet_type = pets.type
+        photos = Photo.objects.filter(pet=pets)
+
         return render(request, 'petpage.html',
                       context={"title": pet_type,
                                'pet': pets,
+                               'photos': photos,
                                })
 
 
