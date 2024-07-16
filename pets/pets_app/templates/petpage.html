@@ -54,10 +54,21 @@
     <p class = "pets-description"> {{ pet.description }}</p>
     <p class = "pets-place"> {{ pet.place }}</p>
     <p class = "pets-date_of_add"> {{ pet.date_of_add }}</p>
+ <hr>
+      <br>
+    </div>
+
 
         </div>
-    </div>
-    <hr>
+        <div class="">
+                {% for photo in photos %}
+                    <img src="/media/{{ photo.photo }}" class="photo-image" alt="" style="{width: 200px; height: 150px; margin-right: 10px;}">
+                {% endfor %}
+            </div>
+
+
+
+
 
 
 {% endblock %}

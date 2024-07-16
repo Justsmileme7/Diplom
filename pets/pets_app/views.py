@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import Pets, Feedback
+from .models import Pets, Feedback, Photo
 from .forms import FeedbackForm
 
 
@@ -30,9 +30,12 @@ class PetsPageView(View):
     def get(self, request, id, *args, **kwargs):
         pets = Pets.objects.get(id=id)
         pet_type = pets.type
+        photos = Photo.objects.filter(pet=pets)
+
         return render(request, 'petpage.html',
                       context={"title": pet_type,
                                'pet': pets,
+                               'photos': photos,
                                })
 
 
