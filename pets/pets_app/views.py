@@ -12,7 +12,12 @@ class MainPageView(View):
         sort = request.GET.get('sort', 'date_of_add')
         if order == 'back_order':
             sort = f'-{sort}'
-        pets = Pets.objects.all().order_by(sort)
+
+        filter_type = request.GET.get('type', '')
+        if filter_type == '':
+            pets = Pets.objects.all().order_by(sort)
+        else:
+            pets = Pets.objects.all().order_by(sort).filter(type=filter_type)
 
         return render(request, 'mainpage.html',
                       context={"title": self.PAGE_TITLE,
